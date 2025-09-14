@@ -1,0 +1,124 @@
+📘 Backend API Documentation
+the Bac
+This backend connects to two AI services:
+
+Backend API →  https://backend-geneses-ai.onrender.com
+
+All backend routes are prefixed with /coding_project or /prompts.
+
+🚀 Coding Project APIs (/coding_project/...)
+1. Health Check
+
+GET /coding_project/health
+✅ Test connection with AI service.
+
+2. Select Language
+
+POST /coding_project/select-language
+Body (JSON):
+
+{
+  "language": "Python"
+}
+
+3. Get Lesson
+
+GET /coding_project/get-lesson/{lesson_number}?session_id=YOUR_SESSION_ID
+Example:
+
+/coding_project/get-lesson/1?session_id=abc123
+
+4. Ask Tutor
+
+POST /coding_project/ask-tutor
+Body (JSON):
+
+{
+  "session_id": "abc123",
+  "question": "Explain Python loops"
+}
+
+5. Generate Quiz
+
+GET /coding_project/generate-quiz/{lesson_number}
+Example:
+
+/coding_project/generate-quiz/2
+
+6. Submit Quiz
+
+POST /coding_project/submit-quiz
+Body (JSON):
+
+{
+  "lesson_id": "lesson_2",
+  "answers": ["A", "B", "C"]
+}
+
+7. Session Status
+
+GET /coding_project/session-status
+
+8. Available Languages
+
+GET /coding_project/available-languages
+
+9. Generate Coding Challenge
+
+GET /coding_project/generate-coding-challenge
+
+10. Submit Code
+
+POST /coding_project/submit-code
+Body (JSON):
+
+{
+  "challenge_id": "ch123",
+  "code": "print('Hello World')"
+}
+
+🧪 Prompts APIs (/prompts/...)
+1. Chemistry
+
+POST /prompts/chemistry
+Body (JSON):
+
+{
+  "question": "What is H2O?"
+}
+
+2. Image Analysis
+
+POST /prompts/image-analysis
+Body (form-data):
+
+file → upload image (jpg/png)
+
+question (optional) → "What’s in the picture?"
+
+3. History
+
+GET /prompts/history/{subject}?limit=5
+Example:
+
+/prompts/history/chemistry?limit=5
+
+✅ Notes for Testing in Postman
+
+For JSON requests → select Body → raw → JSON.
+
+For image upload → select Body → form-data and attach file.
+
+Add Content-Type: application/json header where needed.
+
+Backend enriches AI responses with:
+
+{
+  "backend_session_id": "...",
+  "backend_timestamp": "..."
+}
+
+
+👉 This doc is simple enough for your frontend team to just copy/paste into Postman and test.
+
+Do you want me to also generate a Postman Collection JSON so they can import everything at once?
